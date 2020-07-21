@@ -182,8 +182,15 @@
 
     var colors = ["red", "green", "pink", "hotpink", "cyan", "yellowgreen", "purple", "deepskyblue", "blue"]
     var $texts = ["乙璇最可爱", "666", "点个赞", "哇", "很棒棒", "加油~", "你今天真美", "小仙女", "很不错哦", "苏喂苏喂苏喂", "猪猪", "这是谁",
-      "女神", "???", "记得要想我呀", "不要熬夜，早睡觉", "要爱护眼睛，要爱惜乙璇"
+      "女神", "???", "记得要想我呀", "不要熬夜，早睡觉", "爱护眼睛，要爱惜乙璇"
     ]
+
+
+
+
+    // $("#btn").click = clickHandle
+
+
     /* 注册事假 */
     $("#btn").click(function () {
 
@@ -208,16 +215,40 @@
         .css("top", randomY) //设置top值
         .animate({
           left: -800
-        }, 10000, function () {
+        }, 8000, function () {
           /* 到了终点，需要删除 */
           $(this).remove()
+          $("#text").empty($("#text").val(""))
 
         }) //添加动画
         .appendTo("#boxDom");
 
+      // $("#text").val("123")
+
+
       $("#text").val("")
 
+      $("#text").val($("span").text())
+
+
+
+
+
+
+      // for (var i = 0; i < $texts.length; i++) {
+      //   if ($("#text").val() = $texts[i]) {
+      //     $("#text").val("")
+      //   }
+      // }
+
+
+
+
+
     })
+
+
+
 
     $("#text").keyup(function (e) {
       if (e.keyCode == 13) {
