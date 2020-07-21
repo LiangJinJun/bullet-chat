@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style type="text/css">
+    html,
+    body {
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      height: 100%;
+      font-family: "微软雅黑";
+      font-size: 62.5%;
+      box-sizing: border-box;
+    }
+
+    .boxDom {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+
+    }
+
+    .idDom {
+      width: 100%;
+      height: 100px;
+      background: #666;
+      position: fixed;
+      bottom: 0px;
+    }
+
+    .content {
+      display: flex;
+      width: 100%;
+      height: 80%;
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      margin: auto;
+    }
+
+    .title {
+      display: block;
+      flex: 1;
+      font-size: 6em;
+      height: 100%;
+      /* width: 60px; */
+      line-height: 50%;
+      text-align: center;
+      /* justify-content: center;
+      align-items: center; */
+      /* vertical-align: bottom; */
+      color: #fff;
+    }
+
+    .text {
+      border: none;
+      /* width: 300px; */
+      /* height: 30px; */
+      flex: 5;
+      border-radius: 5px;
+      font-size: 6em;
+    }
+
+    .btn {
+      /* width: 60px; */
+      height: 100%;
+      background: #f90000;
+      border: none;
+      color: #fff;
+      font-size: 6em;
+      flex: 1;
+      margin-right: 1em;
+    }
+
+    span {
+      width: 600;
+      height: 80px;
+      text-align: left;
+      position: absolute;
+      overflow: hidden;
+      color: #000;
+      font-size: 8em;
+      line-height: 1.5em;
+      cursor: pointer;
+      white-space: nowrap;
+      display: block;
+      border: 1px solid;
+      padding: 5px;
+      border-radius: 20px;
+    }
+
+    .sp {
+      margin: 0 auto;
+      /* width: 794.11px; */
+      width: 100%;
+      height: 556px;
+      /* border: 1px solid #ccc; */
+      padding: 5px;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .bu {
+      width: 100px;
+      height: 100px;
+      font-size: 6em;
+      margin-top: 205px;
+      margin-right: 10px;
+      vertical-align: middle;
+
+    }
+
+    p {
+      font-size: 38px;
+      margin-left: 40px;
+
+    }
+
+    .aa {
+      width: 100%;
+      height: 300px;
+      margin-top: 60px;
+      display: flex;
+      /* padding-top: 10px; */
+    }
+
+    .aa textarea {
+      /* width: 70%; */
+      height: 100%;
+      flex: 3;
+      display: block;
+      font-size: 6em;
+      margin-top: -3px;
+      border: 1px solid #000;
+    }
+
+    li {
+      font-size: 6em;
+      list-style: none;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="boxDom" id="boxDom">
+    <div class="sp">
+      <video src="mp4/3.mp4" poster="images/01.gif" width="100%" controls></video>
+    </div>
+    <div class="box" id="weibo">
+      <p>用户留言</p>
+      <div class="aa">
+        <textarea name="" id="txt"></textarea>
+        <button id="btn1" class="bu">发布</button>
+      </div>
+
+      <ul id="ul">
+
+      </ul>
+    </div>
+    <div class="idDom" id="idDom">
+      <div class="content">
+        <p class="title">吐槽:</p>
+        <input type="text" maxlength="25" class="text" id="text" />
+        <button type="button" class="btn" id="btn">发射</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="jquery-1.12.4.js"></script>
+
+<script>
+  $(document).ready(function () {
+
+    var colors = ["red", "green", "pink", "hotpink", "cyan", "yellowgreen", "purple", "deepskyblue", "blue"]
+    var $texts = ["乙璇最可爱", "666", "点个赞", "哇", "很棒棒", "加油~", "你今天真美", "小仙女", "很不错哦", "苏喂苏喂苏喂", "猪猪", "这是谁",
+      "女神", "???", "记得要想我呀", "不要熬夜，早睡觉", "要爱护眼睛，要爱惜乙璇"
+    ]
+    /* 注册事假 */
+    $("#btn").click(function () {
+
+      var randomColor = parseInt(Math.random() * colors.length)
+      var randomY = parseInt(Math.random() * 400)
+      var randomText = parseInt(Math.random() * $texts.length)
+      if ($("#text").val().trim() == 0) {
+        return
+      }
+
+
+
+
+      $("<span></span>")
+        .text($("#text").val())
+        .text($texts[randomText])
+        .css("color", colors[randomColor]) //设置字体颜色
+        .css({
+          border: "colors[randomColor]"
+        })
+        .css("left", 1400) // 设置left值
+        .css("top", randomY) //设置top值
+        .animate({
+          left: -800
+        }, 10000, function () {
+          /* 到了终点，需要删除 */
+          $(this).remove()
+
+        }) //添加动画
+        .appendTo("#boxDom");
+
+      $("#text").val("")
+
+    })
+
+    $("#text").keyup(function (e) {
+      if (e.keyCode == 13) {
+        $("#btn").click()
+      }
+    })
+
+
+    $("#btn1").click(function () {
+
+
+      /* .trim()    切掉字符串两端的空格 */
+      if ($("#txt").val().trim().length == 0) {
+        return
+      }
+
+      $("<li></li>").text($("#txt").val()).prependTo("#ul")
+      // $("<li></li>").text($("#txt").val()).appendTo("#ul")
+
+      $("#txt").val("")
+    })
+
+
+  })
+</script>
+
+</html>
